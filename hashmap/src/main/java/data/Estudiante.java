@@ -9,12 +9,14 @@ package data;
  * @author Usuario
  */
 public class Estudiante {
+    //atributos
     private String nombres;
     private String apellidos;
     private String direccion;
     private String telefono;
     private String carrera;
-    
+   
+    //constructor
     public Estudiante(String nombres, String apellidos, String direccion, String telefono, String carrera) {
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -23,7 +25,7 @@ public class Estudiante {
         this.carrera = carrera;
     }
     
-    
+    //getters and setters
     public String getNombres() {
         return nombres;
     }

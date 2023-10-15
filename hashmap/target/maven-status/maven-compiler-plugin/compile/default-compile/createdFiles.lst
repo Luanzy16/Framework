@@ -1,7 +1,13 @@
-vista\InterfazEstudiantes.class
 vista\InterfazEstudiantes$4.class
 data\Estudiante.class
 vista\InterfazEstudiantes$2.class
 gestion\GestionEstudiantes.class
-vista\InterfazEstudiantes$1.class
+vista\VistaCantante$1.class
+vista\VistaCantante.class
 vista\InterfazEstudiantes$3.class
+vista\VistaCantante$3.class
+vista\InterfazEstudiantes.class
+data\CantanteFamoso.class
+gestion\GestionCantante.class
+vista\InterfazEstudiantes$1.class
+vista\VistaCantante$2.class

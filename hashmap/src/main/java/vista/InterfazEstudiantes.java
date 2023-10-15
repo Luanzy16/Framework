@@ -28,19 +28,22 @@ public class InterfazEstudiantes extends JFrame {
         JPanel panelFormulario = new JPanel(new GridLayout(6, 2));
         JPanel panelBotones = new JPanel(new FlowLayout());
         table = new JTable();
-
+        
+        //paneles de texto
         txtCodigo = new JTextField();
         txtNombres = new JTextField();
         txtApellidos = new JTextField();
         txtDireccion = new JTextField();
         txtTelefono = new JTextField();
         txtCarrera = new JTextField();
-
+        
+        //Botones
         JButton btnAgregar = new JButton("Agregar");
         JButton btnActualizar = new JButton("Actualizar");
         JButton btnEliminar = new JButton("Eliminar");
         JButton btnConsultar = new JButton("Consultar");
-
+        
+        //añadir componentes al panel "panelFormulario"
         panelFormulario.add(new JLabel("Código:"));
         panelFormulario.add(txtCodigo);
         panelFormulario.add(new JLabel("Nombres:"));
@@ -53,7 +56,8 @@ public class InterfazEstudiantes extends JFrame {
         panelFormulario.add(txtTelefono);
         panelFormulario.add(new JLabel("Carrera:"));
         panelFormulario.add(txtCarrera);
-
+        
+        //añadir botones al panes "panelBotones"
         panelBotones.add(btnAgregar);
         panelBotones.add(btnActualizar);
         panelBotones.add(btnEliminar);
@@ -126,11 +130,17 @@ public class InterfazEstudiantes extends JFrame {
 
         setVisible(true);
     }
-
+    
+    /**
+     * funcion que el da a la tabla el modelo
+     */
     private void actualizarTabla() {
         table.setModel(gestionEstudiantes.getTableModel());
     }
-
+    
+    /**
+     * funcion que limpia los campos de los penales de texto
+     */
     private void limpiarCampos() {
         txtCodigo.setText("");
         txtNombres.setText("");
