@@ -7,6 +7,7 @@ package gestion;
 import data.Estudiante;
 import javax.swing.table.DefaultTableModel;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 public class GestionEstudiantes {
     private HashMap<String, Estudiante> estudiantes;
@@ -20,6 +21,14 @@ public class GestionEstudiantes {
      * @param estudiante 
      */
     public void insertarEstudiante(String codigo, Estudiante estudiante) {
+        if(containsSpecialCharacter(estudiante.getNombres()) || containsSpecialCharacter(estudiante.getApellidos() )){
+            JOptionPane.showMessageDialog(null, "No se pueden poner caracteres especiles");
+            return;
+        }
+        if(containsSpecialCharacter(estudiante.getCarrera())){
+            JOptionPane.showMessageDialog(null, "No se pueden poner caracteres especiles");
+            return;
+        }
         estudiantes.put(codigo, estudiante);
     }
 
@@ -66,7 +75,13 @@ public class GestionEstudiantes {
 
         return modelo;
     }
-
+    
+    
+    
+    // Método para verificar si una cadena contiene caracteres especiales
+    private boolean containsSpecialCharacter(String str) {
+        return !str.matches("[a-zA-Z0-9 ]*");
+    }
 
 
 

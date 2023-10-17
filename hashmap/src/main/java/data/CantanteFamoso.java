@@ -12,11 +12,13 @@ public class CantanteFamoso {
     //atributos
     private String nombre;
     private String discoConMasVentas;
+    private int ventas;
 
     //constructor
-    public CantanteFamoso(String nombre, String discoConMasVentas) {
+    public CantanteFamoso(String nombre, String discoConMasVentas,int ventas) {
         this.nombre = nombre;
         this.discoConMasVentas = discoConMasVentas;
+        this.ventas = ventas;
     }
     
     //getters y setters
@@ -34,6 +36,14 @@ public class CantanteFamoso {
 
     public void setDiscoConMasVentas(String discoConMasVentas) {
         this.discoConMasVentas = discoConMasVentas;
+    }
+    
+    public int getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(int ventas) {
+        this.ventas = ventas;
     }
 }
 

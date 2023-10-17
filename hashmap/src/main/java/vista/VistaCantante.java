@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 public class VistaCantante extends JFrame implements ActionListener {
     private GestionCantante listaCantantes;
     private JTable table;
-    private JTextField JTnombre, JTdisco;
+    private JTextField JTnombre, JTdisco, JTventas;
 
     public VistaCantante() {
         listaCantantes = new GestionCantante();
@@ -36,6 +36,7 @@ public class VistaCantante extends JFrame implements ActionListener {
         //paneles de texto
         JTnombre = new JTextField();
         JTdisco = new JTextField();
+        JTventas = new JTextField();
 
         //botones
         JButton insertar = new JButton("INSERTAR");
@@ -47,6 +48,8 @@ public class VistaCantante extends JFrame implements ActionListener {
         panel.add(JTnombre);
         panel.add(new JLabel("Disco más Vendido:"));
         panel.add(JTdisco);
+        panel.add(new JLabel("Numero de Ventas:"));
+        panel.add(JTventas);
         
         //Agregar componentes al panelBotones
         panelBotones.add(insertar);
@@ -59,9 +62,11 @@ public class VistaCantante extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 String nombre = JTnombre.getText();
                 String disco = JTdisco.getText();
+                int ventas = Integer.parseInt(JTventas.getText());
                 
-                CantanteFamoso cantante = new CantanteFamoso(nombre, disco);
+                CantanteFamoso cantante = new CantanteFamoso(nombre, disco,ventas);
                 listaCantantes.agregarCantante(cantante);
+                listaCantantes.ordenarPorVentas();
                 actualizarTabla();
                 limpiarCampos();
             }
@@ -74,6 +79,7 @@ public class VistaCantante extends JFrame implements ActionListener {
                 String nuevoNombre = JOptionPane.showInputDialog("Ingresa el nuevo nombre");
                 
                 listaCantantes.modificar(nombre, nuevoNombre);
+                listaCantantes.ordenarPorVentas();
                 actualizarTabla();
                 limpiarCampos();
                 
@@ -86,6 +92,7 @@ public class VistaCantante extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 String nombre = JTnombre.getText();
                 listaCantantes.eliminarCantante(nombre);
+                listaCantantes.ordenarPorVentas();
                 actualizarTabla();
                 limpiarCampos();
             }
@@ -118,6 +125,7 @@ public class VistaCantante extends JFrame implements ActionListener {
     private void limpiarCampos(){
         JTnombre.setText("");
         JTdisco.setText("");
+        JTventas.setText("");
     }
     public static void main(String[] args) {
         VistaCantante frame = new VistaCantante();

@@ -10,8 +10,11 @@ package gestion;
  */
 import data.CantanteFamoso;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class GestionCantante {
@@ -27,6 +30,10 @@ public class GestionCantante {
      * @param cantante 
      */
     public void agregarCantante(CantanteFamoso cantante) {
+        if(containsSpecialCharacter(cantante.getNombre()) || containsSpecialCharacter(cantante.getDiscoConMasVentas())){
+            JOptionPane.showMessageDialog(null, "No se pueden poner caracteres especiles");
+            return;
+        }
         listaCantantesFamosos.add(cantante);
     }
 
@@ -66,18 +73,33 @@ public class GestionCantante {
      * @return Modelo de tabla
      */
     public DefaultTableModel getTableModel() {
-        String[] columnas = {"Nombre", "Disco"};
+        String[] columnas = {"Nombre", "Disco","ventas"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
         for (CantanteFamoso x : listaCantantesFamosos) {
-            Object[] fila = {x.getNombre(),x.getDiscoConMasVentas()};
+            Object[] fila = {x.getNombre(),x.getDiscoConMasVentas(),x.getVentas()};
             modelo.addRow(fila);
         }
 
         return modelo;
     }
+    
+    /**
+     * Funcion que ordena la lsita por medio del atributo de ventas de la lista
+     */
+    public void ordenarPorVentas() {
+        Collections.sort(listaCantantesFamosos, new Comparator<CantanteFamoso>() {
+            @Override
+            public int compare(CantanteFamoso cantante1, CantanteFamoso cantante2) {
+                return Integer.compare(cantante1.getVentas(), cantante2.getVentas());
+            }
+        });
+    }
 
- 
+    // Método para verificar si una cadena contiene caracteres especiales
+    private boolean containsSpecialCharacter(String str) {
+        return !str.matches("[a-zA-Z0-9 ]*");
+    }
     
     //getters y setters
     public List<CantanteFamoso> getListaCantantesFamosos() {
